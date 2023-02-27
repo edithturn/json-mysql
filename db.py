@@ -1,10 +1,14 @@
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, MetaData, Table, ForeignKey, ForeignKeyConstraint
 from sqlalchemy import Column, String, Integer, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine("mysql+pymysql://user:pass@localhost/library")
+
+#engine = create_engine("mysql+pymysql://user:pass@localhost/library")
+#engine = create_engine("mysql+pymysql://user:pass@localhost/library")
+# engine = create_engine("mysql+pymysql:///library")
+engine = create_engine('mysql+pymysql://user:pass@localhost/library', echo=True)
 
 base = declarative_base()
 
@@ -20,7 +24,7 @@ class library(base):
         self.book_id = book_id
         self.title = title
         self.publisher = publisher
-        self.labels = labels
+        self.labels = labels 
     
 base.metadata.create_all(engine)
 
