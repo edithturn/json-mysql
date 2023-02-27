@@ -1,36 +1,26 @@
 
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, Column, String, JSON
+from sqlalchemy import create_engine
+from sqlalchemy import Column, String, Integer, JSON
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-Base = declarative_base()
+engine = create_engine("mysql+pymysql://user:pass@localhost/library")
 
-class Book(Base):
-    __tablename__ = 'books'
-    
+base = declarative_base()
+
+class library(base):
+    __tablename__ = 'transactions'
+
     book_id = Column(String, primary_key=True)
     title = Column(String)
     publisher = Column(String)
     labels = Column(JSON)
 
-def connect_to_database():
-    engine = create_engine('mysql://user:password@host:port/library')
-    Base.metadata.create_all(engine)
-    return engine
+    def __init__(self, book_id, title, publisher, labels):
+        self.book_id = book_id
+        self.title = title
+        self.publisher = publisher
+        self.labels = labels
+    
+base.metadata.create_all(engine)
 
-def get_books():
-    engine = connect_to_database()
-    with engine.connect() as conn:
-        books = conn.execute('SELECT * FROM books').fetchall()
-    return books
-
-def add_book(book_id, title, publisher, labels):
-    engine = connect_to_database()
-    with engine.connect() as conn:
-        book = Book(book_id=book_id, title=title, publisher=publisher, labels=labels)
-        conn.add(book)
-        conn.commit()
-
-
-engine = connect_to_database()
-Base.metadata.create_all(engine)
