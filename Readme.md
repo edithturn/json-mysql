@@ -41,3 +41,5 @@ pip list
 ```python
 deactivate
 ```
+
+# How to Execute this script?

@@ -1,0 +1,27 @@
+services:
+  db:
+    image: percona/percona-server:8.0
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_USER: "root"
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - my-db:/var/lib/mysql
+
+  pyapp:
+    container_name: pyapp
+    build: .
+    depends_on:
+      - db
+
+# Names our volume
+volumes:
+  my-db:
+# docker compose up
+# docker compose down
+# Accessing to the dashboard: http://localhost:32433/graph/login

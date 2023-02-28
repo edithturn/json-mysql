@@ -5,14 +5,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-#engine = create_engine("mysql+pymysql://user:pass@localhost/library")
-#engine = create_engine("mysql+pymysql://user:pass@localhost/library")
-# engine = create_engine("mysql+pymysql:///library")
-engine = create_engine('mysql+pymysql://user:pass@localhost/library', echo=True)
+uri = 'mysql+pymysql://root:root@172.27.0.2/library'
 
-base = declarative_base()
 
-class library(base):
+engine = create_engine(uri, echo=True)
+connection = engine.connect()
+
+'''class library(base):
     __tablename__ = 'transactions'
 
     book_id = Column(String, primary_key=True)
@@ -25,6 +24,6 @@ class library(base):
         self.title = title
         self.publisher = publisher
         self.labels = labels 
-    
-base.metadata.create_all(engine)
+'''
+#base.metadata.create_all(engine)
 
