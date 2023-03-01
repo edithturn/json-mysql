@@ -11,7 +11,9 @@ uri = "mysql+pymysql://root:root@db/library"
 engine = create_engine(uri, echo=True)
 connection = engine.connect()
 
-'''class library(base):
+base = declarative_base()
+
+class library(base):
     __tablename__ = 'transactions'
 
     book_id = Column(String, primary_key=True)
@@ -24,6 +26,6 @@ connection = engine.connect()
         self.title = title
         self.publisher = publisher
         self.labels = labels 
-'''
-#base.metadata.create_all(engine)
+
+base.metadata.create_all(engine)
 
