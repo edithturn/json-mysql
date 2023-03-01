@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-uri = 'mysql+pymysql://root:root@172.27.0.2/library'
+uri = "mysql+pymysql://root:root@db/library"
 
 
 engine = create_engine(uri, echo=True)

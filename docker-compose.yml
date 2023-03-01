@@ -1,23 +1,18 @@
+version: "3.9"
 services:
   db:
     image: percona/percona-server:8.0
-    container_name: db
     restart: always
     environment:
-      MYSQL_USER: "root"
-      MYSQL_ROOT_PASSWORD: "root"
-    ports:
-      - "3306:3306"
-    expose:
-      - "3306"
+      MYSQL_ROOT_PASSWORD: root
+      #MYSQL_DATABASE: library
     volumes:
       - my-db:/var/lib/mysql
-
-  pyapp:
-    container_name: pyapp
+  api:
     build: .
     depends_on:
       - db
+    command: python3 db.py
 
 # Names our volume
 volumes:
