@@ -15,6 +15,7 @@ WORKDIR /app
 
 COPY app/* /app
 
+RUN chmod a+x run.sh
 
 #CMD ["python3", "db.py"]
 

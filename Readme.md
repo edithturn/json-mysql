@@ -1,53 +1,38 @@
-# Using the JSON data type with MySQL 8
+# Using the JSON data type with MySQL 8 and Sqlalchemy
 
-## Installing Percona Server MySQL (Docker)
+This project will show how JSON data type works in MySQL 8.
+We will create a database using [percona-server:8.0](https://hub.docker.com/r/percona/percona-server/tags) and then we will create the tables using Python with **sqlalchemy** and finally insert some data in the database.
 
-```bash
-docker run -d --name percona-server-1 -e MYSQL_ROOT_PASSWORD=root percona/percona-server:8.0
-```
-
-## Running Python with Sqlalchemy
-
-We will now create a database and create the tables using Python with Sqlalchemy.
-
-- First we will create the connection to Percona Server for MySQL
-- We can run the program to create the databae, tables and insert the data
-- We will list the data to see all the columns
-- Let's focus in JSON datatype in Percona Server for MySQL
-
-# Installing SQLAlchemy
+We are working with **Docker compose**. If you wanna test this project you juyst need one command:
 
 ```bash
-pip install sqlalchemy PyMySQL
+docker compose up
 ```
 
-# Creating a virtual Python environment
+This command will start two services, one is the **db** which uses the image of [percona-server:8.0](https://hub.docker.com/r/percona/percona-server/tags) and the second service is called "api" which is a Python application with a Dockerfile. It wil create tables and insert some data in the database using **sqlalchemy**.
 
-```python
-pip install virtualenv
+If you wanna see all the services:
 
-python3 -m venv myenv
-source myenv/bin/activate
+```bash
+docker compose ps
 ```
 
-# Check what Python Libraries are installed
+If you wanna turn down your services:
 
-```python
-pip list
+```bash
+docker compose down
 ```
 
-# Desactivate environment
+Checking the data in the database
 
-```python
-deactivate
+```bash
+docker exec db /bin/bash
 ```
 
-# How to Execute this script?
-
-create database library; ()compose
-
+```bash
 show databases;
 use library;
 show tables;
 select \* from transactions;
 describe transactions;
+```

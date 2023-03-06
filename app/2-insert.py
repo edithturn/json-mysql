@@ -1,20 +1,13 @@
 
-import db 
-from sqlalchemy.orm import sessionmakerx
+import db
+from sqlalchemy.orm import sessionmaker
 
-class library(base):
-    __tablename__ = 'transactions'
 
-    book_id = Column(Integer, primary_key=True)
-    title = Column(String(30))
-    publisher = Column(String(30))
-    labels = Column(JSON)
+Session = sessionmaker(bind=db.engine)
+session = Session()
 
-    def __init__(self, book_id, title, publisher, labels):
-        self.book_id = book_id
-        self.title = title
-        self.publisher = publisher
-        self.labels = labels 
+tr = db.transactions(0,'Green House', 'Joe Monter', '{"about" : {"gender": "action", "cool": true, "notes": "labeled"}}')
 
-base.metadata.create_all(engine)
+session.add(tr)
+session.commit()
 
