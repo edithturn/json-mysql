@@ -43,3 +43,11 @@ deactivate
 ```
 
 # How to Execute this script?
+
+create database library; ()compose
+
+show databases;
+use library;
+show tables;
+select \* from transactions;
+describe transactions;

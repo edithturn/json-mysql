@@ -5,26 +5,26 @@ services:
     container_name: db
     restart: always
     environment:
+      MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: library
     volumes:
       - my-db:/var/lib/mysql
-    networks:
-      - percona
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+
   api:
     build: .
     container_name: api
     depends_on:
       - db
-    command: python3 db.py
-    networks:
-      - percona
+    command: sh -c "sleep 20s ; python3 db.py"
 
 # Names our volume
 volumes:
   my-db:
-networks:
-  percona:
-    name: percona
 # docker compose up
 # docker compose down
 # Accessing to the dashboard: http://localhost:32433/graph/login

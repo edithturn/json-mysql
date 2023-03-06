@@ -1,17 +1,6 @@
 
-from sqlalchemy import create_engine, MetaData, Table, ForeignKey, ForeignKeyConstraint
-from sqlalchemy import Column, String, Integer, JSON
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-
-
-uri = "mysql+pymysql://root:root@db:3306/library"
-
-
-engine = create_engine(uri, echo=True)
-connection = engine.connect()
-
-base = declarative_base()
+import db 
+from sqlalchemy.orm import sessionmakerx
 
 class library(base):
     __tablename__ = 'transactions'
