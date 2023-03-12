@@ -17,5 +17,11 @@ COPY app/* /app
 
 RUN chmod a+x run.sh
 
-#CMD ["python3", "db.py"]
+#COPY ./requirements.txt .
+#RUN pip install -r requirements.txt
+CMD bash -C './run.sh';'bash'
+
+
+# To have Requirements.txt with dependencies
+# pip3 install -r requirements.txt
 

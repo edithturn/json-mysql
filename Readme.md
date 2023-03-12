@@ -3,7 +3,7 @@
 This project will show how JSON data type works in MySQL 8.
 We will create a database using [percona-server:8.0](https://hub.docker.com/r/percona/percona-server/tags) and then we will create the tables using Python with **sqlalchemy** and finally insert some data in the database.
 
-We are working with **Docker compose**. If you wanna test this project you juyst need one command:
+We are working with **Docker compose**. if you want to turn off the services use this command:
 
 ```bash
 docker compose up
@@ -33,6 +33,8 @@ docker exec db /bin/bash
 show databases;
 use library;
 show tables;
-select \* from transactions;
-describe transactions;
+select * from book;
+describe book;
 ```
+
+**Note** This projects is open source feel free to send feedbacks or suggestions

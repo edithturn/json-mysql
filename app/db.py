@@ -1,5 +1,5 @@
 
-from sqlalchemy import create_engine, MetaData, Table, ForeignKey, ForeignKeyConstraint
+from sqlalchemy import create_engine, MetaData, Table
 from sqlalchemy import Column, String, Integer, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -14,7 +14,7 @@ connection = engine.connect()
 base = declarative_base()
 
 class transactions(base):
-    __tablename__ = 'transactions'
+    __tablename__ = 'book'
 
     book_id = Column(Integer, primary_key=True)
     title = Column(String(50))
@@ -28,4 +28,5 @@ class transactions(base):
         self.labels = labels 
 
 base.metadata.create_all(engine)
+
 
