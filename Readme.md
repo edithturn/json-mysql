@@ -25,6 +25,8 @@ docker compose down
 
 Checking the data in the database
 
+You can enter into the container and execute commands to inspect the database
+
 ```bash
 docker exec db /bin/bash
 ```
@@ -35,6 +37,12 @@ use library;
 show tables;
 select * from book;
 describe book;
+```
+
+Or you you inspect the database from outside the container
+
+```bash
+docker exec -i db mysql -uroot -proot  <<< "use library;show tables;select * from book;describe book;"
 ```
 
 **Note** This projects is open source feel free to send feedbacks or suggestions
