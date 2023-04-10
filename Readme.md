@@ -7,6 +7,8 @@ We are working with **Docker compose**. if you want to turn off the services use
 
 ```bash
 docker compose up
+# Or add "-d" to run the process in the background
+docker compose ps -d
 ```
 
 This command will start two services, one is the **db** which uses the image of [percona-server:8.0](https://hub.docker.com/r/percona/percona-server/tags) and the second service is called "api" which is a Python application with a Dockerfile. It wil create tables and insert some data in the database using **sqlalchemy**.
@@ -15,6 +17,7 @@ If you wanna see all the services:
 
 ```bash
 docker compose ps
+
 ```
 
 If you wanna turn down your services:

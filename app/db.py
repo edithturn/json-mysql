@@ -3,14 +3,16 @@ from sqlalchemy import create_engine, MetaData, Table
 from sqlalchemy import Column, String, Integer, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import os
 
 
-uri = "mysql+pymysql://root:root@db:3306/library"
 
 
-engine = create_engine(uri, echo=True)
+db_user = os.environ['DB_USER']
+db_password = os.environ['DB_PASSWORD']
+
+engine = create_engine(f"mysql+pymysql://{db_user}:{db_password}@db:3306/library")
 connection = engine.connect()
-
 base = declarative_base()
 
 class transactions(base):
